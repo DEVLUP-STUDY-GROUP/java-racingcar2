@@ -9,6 +9,7 @@ class StringUtilsTest {
     @DisplayName("괄호제거")
     public void removeParentheses() {
         // sample
+        System.out.println("test1");
         String str = "(1,2)";
         // String 가공
         // 어떤 부분만 살려낼지 잡아내서 변수에 저장, 나머진 버리기
