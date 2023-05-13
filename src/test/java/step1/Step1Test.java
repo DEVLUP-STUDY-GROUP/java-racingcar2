@@ -12,6 +12,7 @@ import java.util.Set;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class Step1Test {
+    /* 로그 추가 테스트 더 추가하겠습니다. */
     @Test
     void splitTest1(){
         String test = "1,2";
