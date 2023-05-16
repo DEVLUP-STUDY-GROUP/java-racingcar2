@@ -1,4 +1,4 @@
-package study;
+package study.calculator;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -20,7 +20,7 @@ public class StringTest {
      *   - 배열로 반환하는 값의 경우 assertj의 containsExactly()를 활용해 반환 값이 맞는지 검증한다.
      */
     @Test
-    @DisplayName("study.StringTest split()")
+    @DisplayName("study.calculator.StringTest split()")
     void split(){
         assertThat("1,2".split(",")).containsExactly("1","2");
         assertThat("1".split(",")).contains("1");
@@ -31,7 +31,7 @@ public class StringTest {
      *   - "(1,2)" 값이 주어졌을 때 String의 substring() 메소드를 활용해 ()을 제거하고 "1,2"를 반환하도록 구현한다.
      */
     @Test
-    @DisplayName("study.StringTest substring()")
+    @DisplayName("study.calculator.StringTest substring()")
     void substring(){
         assertThat("(1,2)".substring(1,4)).isEqualTo("1,2");
     }
@@ -53,7 +53,7 @@ public class StringTest {
      *   - assertThatNullPointerException()
      */
     @Test
-    @DisplayName("study.StringTest charAt()")
+    @DisplayName("study.calculator.StringTest charAt()")
     void charAt(){
         String param = "abc";
         assertThat(param.charAt(0)).isEqualTo('a');
