@@ -8,16 +8,24 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-public class Step03_Validate {
+public class CalculateValidTest {
 
     @Test
-    @DisplayName("입력 값이 null 혹은 공백인 경우")
-    @Order(2)
+    @DisplayName("입력 값 null")
+    @Order(1)
     void isNull() {
         assertThatIllegalArgumentException()
-                //.isThrownBy(() -> new Calculator().calculate("xxxxxxxx"))
-                //.isThrownBy(() -> new Calculator().calculate("3 * 2 / 2 + 1, 4"))
                 .isThrownBy(() -> new Calculator().calculateResult(null))
+                .withMessageMatching("input value is null or empty")
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("입력 값 공백")
+    @Order(2)
+    void isEmpty() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Calculator().calculateResult(""))
                 .withMessageMatching("input value is null or empty")
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -56,7 +64,6 @@ public class Step03_Validate {
     @DisplayName("정수가 아닌 문자인 경우")
     @Order(5)
     void isNotNumeric(String input) {
-//        int i = new Calculator().calculateResult(input);
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Calculator().calculateResult(input))
                 .withMessageContaining("cannot parse none numeric value")
