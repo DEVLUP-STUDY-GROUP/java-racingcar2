@@ -1,4 +1,4 @@
-package study;
+package study.calculator;
 
 import org.junit.jupiter.api.BeforeEach;
 
@@ -40,7 +40,7 @@ public class SetTest {
      *  - Set의 size() 메소드를 활용해 Set의 크기를 확인하는 학습테스트를 구현한다.
      */
     @Test
-    @DisplayName("study.SetTest size()")
+    @DisplayName("study.calculator.SetTest size()")
     void size() {
         assertThat(numbers.size()).isEqualTo(3);
     }
@@ -58,7 +58,7 @@ public class SetTest {
      */
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3})
-    @DisplayName("study.SetTest contains()")
+    @DisplayName("study.calculator.SetTest contains()")
     void contains(int paramNumber) {
         assertThat(numbers.contains(paramNumber)).isTrue();
     }
@@ -76,7 +76,7 @@ public class SetTest {
      */
     @ParameterizedTest
     @CsvSource(value = {"123:45"}, delimiter = ':')
-    @DisplayName("study.SetTest csvSourceContains()")
+    @DisplayName("study.calculator.SetTest csvSourceContains()")
     void csvSourceContains(String paramNumber1, String paramNumber2) {
         for (int i=0; i<paramNumber1.length(); i++){
             assertThat(numbers.contains(Character.getNumericValue(paramNumber1.charAt(i)))).isTrue();
