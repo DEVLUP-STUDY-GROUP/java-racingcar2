@@ -14,9 +14,7 @@ public class Calculator {
 
     public static int calculate(String value) {
         // 입력 값이 null이거나 빈 공백일 경우 예외를 발생
-        if(Objects.isNull(value) || value.trim().isEmpty()){
-            throw new IllegalArgumentException("Input value is null or space ");
-        }
+        isNullOrEmpty(value);
         // 입력 값을 공백을 기준으로 분리
         String[] splitData = value.split(" ");
 
@@ -32,6 +30,13 @@ public class Calculator {
 
         return result;
     }
+
+    private static void isNullOrEmpty(String value) {
+        if(Objects.isNull(value) || value.trim().isEmpty()){
+            throw new IllegalArgumentException("Input value is null or space ");
+        }
+    }
+
     /** 문자열 정수로 변환 **/
     private static int myParseInt(String str){
         try{
