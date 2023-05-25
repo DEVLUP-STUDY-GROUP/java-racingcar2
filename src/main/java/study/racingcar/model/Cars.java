@@ -1,27 +1,40 @@
 package study.racingcar.model;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Cars {
     private List<Car> cars;
 
-    public Cars(int carCount){
+    public Cars(String inputName){
         List<Car> cars = new ArrayList<>();
-        for (int i = 0; i < carCount; i++) {
-            Car car = new Car();
+        String[] carNames = inputName.split(",");
+        for (String carName: carNames) {
+            Car car = new Car(carName);
             cars.add(car);
         }
         this.cars = cars;
     }
 
-    public int getCarCount() {
-        return cars.size();
-    }
-
     public List<Car> getCars() {
         return cars;
+    }
+
+    public int getMaxPosition() {
+        return this.cars.stream()
+                                .mapToInt(Car::getPosition)
+                                .max()
+                                .orElse(0);
+    }
+
+    public List<String> getWinnerCarNames() {
+        return this.cars.stream()
+                .filter(car -> car.getPosition() == getMaxPosition())
+                .map(Car::getName)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -36,4 +49,6 @@ public class Cars {
     public int hashCode() {
         return Objects.hash(cars);
     }
+
+
 }

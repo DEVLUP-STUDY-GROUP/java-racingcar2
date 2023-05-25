@@ -7,22 +7,31 @@ import java.util.Objects;
 public class Car {
     private static String INPUT_ERROR_MESSAGE = "입력 문자열이 정상적이지 않습니다.";
     private static int START_POSITION = 0;
-
+    private String name;
     private int position;
 
-    public Car() {
-        this(START_POSITION);
+
+    public Car(String name) {
+        this(name, START_POSITION);
     }
 
-    public Car(int nowPosition) {
-        if(nowPosition < 0){
+    public Car(String name, int position) {
+        if(name.length() == 0){
             throw new IllegalArgumentException(INPUT_ERROR_MESSAGE);
         }
-        this.position = nowPosition;
+        if(position < 0){
+            throw new IllegalArgumentException(INPUT_ERROR_MESSAGE);
+        }
+        this.name = name;
+        this.position = position;
     }
 
     public int getPosition() {
         return position;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void move(MoveStrategy moveCar){
