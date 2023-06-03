@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class Step01 {
+class StringTest {
 
     @ParameterizedTest
     @ValueSource(strings = "1,2")
