@@ -1,11 +1,11 @@
-package step3;
+package step4;
 
 import java.io.ByteArrayInputStream;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ConsoleInputView implements InputView {
-    public static String carMainMessage ="자동차 대수는?";
+    public static String carMainMessage ="경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
     public static String carMainMessage2 ="시도할 회수는 몇 회 인가요?";
     public Scanner scanner ;
 
@@ -24,8 +24,23 @@ public class ConsoleInputView implements InputView {
     }
 
     @Override
+    public String[] getNextCarNames() {
+        String[] names = scanner.nextLine().split(",");
+        validNamesChecker(names);
+        return names;
+    }
+
+    private static void validNamesChecker(String[] names) {
+        for (String name : names) {
+            if (name.length() > Constants.CARNAME_BOUND) {
+                throw new IllegalArgumentException("자동차 이름은 5자를 넘을 수 없습니다. 입력된 이름: " + name);
+            }
+        }
+    }
+
+    @Override
     public int getNextInt(){
-        int input = -1;
+        int input;
         try {
             input = scanner.nextInt();
         } catch (InputMismatchException e) {
