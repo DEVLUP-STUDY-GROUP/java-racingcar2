@@ -1,7 +1,6 @@
 package study.racingcar.model;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -17,6 +16,10 @@ public class Cars {
             cars.add(car);
         }
         this.cars = cars;
+    }
+
+    public Cars(List<Car> newCars) {
+        this.cars = newCars;
     }
 
     public List<Car> getCars() {
@@ -49,6 +52,4 @@ public class Cars {
     public int hashCode() {
         return Objects.hash(cars);
     }
-
-
 }

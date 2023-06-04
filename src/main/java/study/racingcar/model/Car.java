@@ -6,10 +6,18 @@ import java.util.Objects;
 
 public class Car {
     private static String INPUT_ERROR_MESSAGE = "입력 문자열이 정상적이지 않습니다.";
+    private static String TEST_NAME = "TESTER";
     private static int START_POSITION = 0;
     private String name;
     private int position;
 
+    public Car() {
+        this(TEST_NAME, START_POSITION);
+    }
+
+    public Car(int position) {
+        this(TEST_NAME, position);
+    }
 
     public Car(String name) {
         this(name, START_POSITION);
@@ -34,7 +42,7 @@ public class Car {
         return name;
     }
 
-    public void move(MoveStrategy moveCar){
+    public void move(MoveStrategy moveCar) {
         if(moveCar.isMove()){
             this.position += 1;
         }
@@ -45,11 +53,11 @@ public class Car {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
-        return position == car.position;
+        return position == car.position && Objects.equals(name, car.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(position);
+        return Objects.hash(name, position);
     }
 }
