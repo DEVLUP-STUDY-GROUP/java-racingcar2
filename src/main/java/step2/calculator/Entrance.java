@@ -13,9 +13,10 @@ public class Entrance {
 
         ValidationChecker checker = new ValidationChecker();
 
+        // TODO: log 로 다 빼기
         while (true) {
-            // 첫 번째 숫자 입력
 
+            // 첫 번째 숫자 입력
             Double num1 = checker.readNumber(scanner, "첫 번째 숫자를 입력하세요: ");
             if (num1 == null) {
                 System.out.println("숫자를 올바르게 입력해주세요.");
@@ -61,8 +62,10 @@ public class Entrance {
     }
 
     // 연산 수행
+    // TODO: 따로 빼보기
     static double calculate(double num1, char operator, double num2) {
 
+        // 이렇게 초기화 안 하면? -> 초기화 해두는게 좋을거라고 봄
         Calculating calculating;
 
         // TODO: else if 문 다 뜯어내기
