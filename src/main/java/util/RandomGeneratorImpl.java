@@ -1,4 +1,4 @@
-package step4;
+package util;
 
 import java.util.Random;
 

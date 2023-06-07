@@ -1,4 +1,4 @@
-package step4;
+package view;
 
 public interface InputView {
     String getCarNumberPrompt();

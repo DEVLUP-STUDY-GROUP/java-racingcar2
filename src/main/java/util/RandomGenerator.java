@@ -1,4 +1,4 @@
-package step4;
+package util;
 
 public interface RandomGenerator {
     int nextInt(int bound);

@@ -1,4 +1,6 @@
-package step4;
+package view;
+
+import util.Constants;
 
 import java.io.ByteArrayInputStream;
 import java.util.InputMismatchException;

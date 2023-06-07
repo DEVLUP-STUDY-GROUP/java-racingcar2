@@ -1,4 +1,4 @@
-package step4;
+package util;
 
 public class Constants {
     public static final int FORWARD_LIMIT = 4;

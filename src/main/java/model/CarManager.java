@@ -1,8 +1,11 @@
-package step4;
+package model;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
+import exception.DuplicateNameException;
+import model.Car;
+import model.CarFactory;
+import org.omg.PortableInterceptor.ORBInitInfoPackage.DuplicateName;
+
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class CarManager {
@@ -14,7 +17,27 @@ public class CarManager {
         for(String carName : carNames){
             addCar(carFactory.createCar(carName));
         }
+        checkForDuplicateCarNames();
     }
+
+    private void checkForDuplicateCarNames() {
+        Set<String> names = new HashSet<>();
+
+//        for(int i=0; i<carList.size() ; i++){
+//            for(int j=0; j<carList.size(); j++){
+//                if(i==j) continue;
+//                if(carList.get(i).equals(carList.get(j))){
+//                    throw new DuplicateNameException("duplicate Car Name");
+//                }
+//            }
+//        }
+        for(Car car : carList) {
+            if(!names.add(car.getName())) {
+                throw new DuplicateNameException("duplicate Car Name : "+car.getName());
+            }
+        }
+    }
+
     public List<Car> pickWinner() {
         /*List<Car> maxValues = new ArrayList<>();
         int max = Integer.MIN_VALUE;
@@ -31,15 +54,21 @@ public class CarManager {
             }
         }
         return maxValues;*/
-        int maxPosition = carList.stream()
-                .map(Car::getPosition)
-                .max(Integer::compare)
-                .orElseThrow(() -> new NoSuchElementException("List is empty"));
+        int maxPosition = getMaxPosition();
 
         return carList.stream()
                 .filter(car -> car.getPosition() == maxPosition)
                 .collect(Collectors.toList());
     }
+
+    private int getMaxPosition() {
+        int maxPosition = carList.stream()
+                .map(Car::getPosition)
+                .max(Integer::compare)
+                .orElseThrow(() -> new NoSuchElementException("List is empty"));
+        return maxPosition;
+    }
+
     public void addCar(Car car){
         carList.add(car);
     }

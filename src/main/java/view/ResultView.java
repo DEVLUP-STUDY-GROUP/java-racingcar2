@@ -1,4 +1,6 @@
-package step4;
+package view;
+
+import model.Car;
 
 import java.util.List;
 

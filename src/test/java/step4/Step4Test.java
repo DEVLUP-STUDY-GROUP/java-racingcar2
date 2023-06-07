@@ -1,17 +1,39 @@
 package step4;
 
-import org.junit.jupiter.api.BeforeEach;
+import domain.RacingGame;
+import model.Car;
+import model.CarFactory;
+import model.CarManager;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import util.Constants;
+import util.RandomGenerator;
+import util.RandomGeneratorImpl;
+import view.ConsoleInputView;
+import view.ResultView;
+
 import static org.mockito.Mockito.*;
 
 public class Step4Test {
 
+    /*
+    @DisplayName으로 수정.
+     */
     public static final String carNames = "car1,car2,car3";
     public static final int carChoice=5;
     public static final String delimiter =":";
     public static final String testString =carNames+delimiter+carChoice;
+    public static final String dupChkTest = "car1,car1,car1"+delimiter+carChoice;
+
+    /**
+     *  동일한 Car일경우 Exception 발생 테스트
+     */
+    @ParameterizedTest
+    @CsvSource(value = {dupChkTest},delimiter = ':')
+    public void dupCarTest(String value1, String value2){
+        createRacingGame(value1, value2, new RandomGeneratorImpl());
+    }
     /** Car 클래스의 moveAction()메서드 단위 테스트
      * Car는 4보다 크면 이동하고 그렇지 않으면 이동하지 않는다.
      */
@@ -23,7 +45,6 @@ public class Step4Test {
         boolean shouldMove = mockRandomGenerator.nextInt(Constants.RANDOM_BOUND) >= Constants.FORWARD_LIMIT;
         car.moveAction(shouldMove);
         ResultView.foward(car.getName(), car.getPosition());
-        System.out.println();
     }
     @Test
     public void carActionFalseTest() {
@@ -33,7 +54,6 @@ public class Step4Test {
         boolean shouldMove = mockRandomGenerator.nextInt(Constants.RANDOM_BOUND) >= Constants.FORWARD_LIMIT;
         car.moveAction(shouldMove);
         ResultView.foward(car.getName(), car.getPosition());
-        System.out.println();
     }
     /** CarFactory 클래스의 createCar()메서드 단위 테스트
      * 무조건 이동에 성공하는 Car를 생성하는 메서드
@@ -48,7 +68,6 @@ public class Step4Test {
         trueCar.moveAction(shouldMove);
         //verify(mockRandomGenerator, times(2)).nextInt(Constants.RANDOM_BOUND);
         ResultView.foward(trueCar.getName(), trueCar.getPosition());
-        System.out.println();
     }
     /** CarManager 클래스의 addCar()메서드 단위 테스트
      * 무조건 이동에 성공하는 Car를 3개 생성해서 리스트에 추가

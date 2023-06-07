@@ -1,4 +1,6 @@
-package step4;
+package model;
+
+import model.Car;
 
 public class CarFactory {
 

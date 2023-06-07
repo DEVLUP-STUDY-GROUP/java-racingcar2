@@ -1,7 +1,13 @@
-package step4;
+package domain;
+
+import model.CarFactory;
+import model.CarManager;
+import util.Constants;
+import util.RandomGenerator;
+import view.InputView;
+import view.ResultView;
 
 import java.util.Arrays;
-import java.util.List;
 
 public class RacingGame {
 
